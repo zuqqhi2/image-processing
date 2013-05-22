@@ -35,8 +35,8 @@ dstimg.h.times do |y|
             sum = 0
         end
 
-        color = dstimg.pixel(x,y)
-        color.r = color.b = color.g = sum.to_i
+        color = img.pixel(x,y)
+        #color.r = color.b = color.g = sum.to_i
 
         dstimg.draw_pixel(x, y, color)
     end
