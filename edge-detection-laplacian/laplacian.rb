@@ -39,4 +39,4 @@ dstimg.h.times do |y|
 end
 
 
-img.save("dstimg/edge.jpg")
+dstimg.save("dstimg/edge.jpg")
