@@ -13,13 +13,14 @@ img.h.times do |y|
     end
 end
 
+dstimg = Imlib2::Image.create(img.width, img.height)
 laplacian_filter=[[1,1,1],[1,-8,1],[1,1,1]]
-img.h.times do |y|
-    img.w.times do |x|
-        if x == 0 or x == img.width
+dstimg.h.times do |y|
+    dstimg.w.times do |x|
+        if x == 0 or x == dstimg.width
             next
         end
-        if y == 0 or y == img.height
+        if y == 0 or y == dstimg.height
             next
         end
         
@@ -27,13 +28,13 @@ img.h.times do |y|
         for i in -1..1 do
             for j in -1..1 do
                 color = img.pixel(x+j, y+i)
-                sum = color.r * laplacian_filter[i+1][j+1]
+                sum += color.r * laplacian_filter[i+1][j+1]
             end
         end
         color = img.pixel(x,y)
         color.r = color.b = color.g = sum
 
-        img.draw_pixel(x, y, color)
+        dstimg.draw_pixel(x, y, color)
     end
 end
 
