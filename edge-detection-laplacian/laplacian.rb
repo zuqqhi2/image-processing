@@ -32,7 +32,7 @@ dstimg.h.times do |y|
             end
         end
         color = img.pixel(x,y)
-        color.r = color.b = color.g = sum
+        color.r = color.b = color.g = 0
 
         dstimg.draw_pixel(x, y, color)
     end
