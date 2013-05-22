@@ -31,8 +31,8 @@ dstimg.h.times do |y|
                 sum += color.r * laplacian_filter[i+1][j+1]
             end
         end
-        color = img.pixel(x,y)
-        color.r = color.b = color.g = 0
+        color = dstimg.pixel(x,y)
+        color.r = color.b = color.g = sum
 
         dstimg.draw_pixel(x, y, color)
     end
