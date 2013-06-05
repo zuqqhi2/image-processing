@@ -36,7 +36,7 @@ def rgb2hsv(r, g, b)
 end
 
 # Main part
-img = Imlib2::Image.load("srcimg/lena.jpg")
+img = Imlib2::Image.load("srcimg/src.jpg")
 minHue = 0.0
 maxHue = 30.0
 
