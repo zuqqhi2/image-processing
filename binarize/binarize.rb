@@ -57,7 +57,7 @@ img.h.times do |y|
 
         saturation = calcSaturation(c1, c2)
         col = 255
-        if hue >= minHue and hue <= maxHue and saturation < maxSat and bright > minBright
+        if hue >= minHue and hue <= maxHue and bright > minBright
             col = 0
         end
         color.r = color.g = color.b = col
