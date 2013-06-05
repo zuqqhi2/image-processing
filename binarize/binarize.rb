@@ -61,7 +61,7 @@ img.h.times do |y|
         if hue >= minHue and hue <= maxHue and saturation < maxSat and bright > minLight
             col = 0
         end
-        
+        col = bright
         color.r = color.g = color.b = col
         img.draw_pixel(x, y, color)
     end
