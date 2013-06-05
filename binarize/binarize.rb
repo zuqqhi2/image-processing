@@ -40,8 +40,8 @@ end
 
 # Main part
 img = Imlib2::Image.load("srcimg/lena.jpg")
-minHue = 0.0
-maxHue = 50.0
+minHue = 50.0
+maxHue = 100.0
 maxSat = 0.52
 minBright = 0.28
 
