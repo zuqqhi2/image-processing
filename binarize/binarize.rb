@@ -41,9 +41,9 @@ end
 # Main part
 img = Imlib2::Image.load("srcimg/lena.jpg")
 minHue = 0.0
-maxHue = 30.0
-maxSat = 0.42
-minBrith = 0.28
+maxHue = 50.0
+maxSat = 50.0
+minBright = 0.28
 
 img.h.times do |y|
     img.w.times do |x|
@@ -56,12 +56,10 @@ img.h.times do |y|
         hue = calcHue(c1, c2)
 
         saturation = calcSaturation(c1, c2)
-
         col = 255
-        if hue >= minHue and hue <= maxHue and saturation < maxSat and bright > minLight
+        if hue >= minHue and hue <= maxHue and saturation < maxSat and bright > minBright
             col = 0
         end
-        col = bright
         color.r = color.g = color.b = col
         img.draw_pixel(x, y, color)
     end
