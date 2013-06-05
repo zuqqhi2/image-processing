@@ -34,8 +34,8 @@ end
 
 # Main part
 img = Imlib2::Image.load("srcimg/lena.jpg")
-minHue = 0.0
-maxHue = 30.0
+minHue = 5.0
+maxHue = 10.0
 
 img.h.times do |y|
     img.w.times do |x|
