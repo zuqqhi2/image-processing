@@ -42,7 +42,7 @@ end
 img = Imlib2::Image.load("srcimg/lena.jpg")
 minHue = 110.0
 maxHue = 140.0
-maxSat = 60.0
+maxSat = 100.0
 minBright = 0.28
 
 img.h.times do |y|
@@ -58,8 +58,6 @@ img.h.times do |y|
         saturation = calcSaturation(c1, c2)
         col = 255
         if hue >= minHue and hue <= maxHue and saturation < maxSat and bright > minBright
-            puts x, y, saturation
-            puts ""
             col = 0
         end
         color.r = color.g = color.b = col
