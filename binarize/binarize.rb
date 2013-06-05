@@ -1,66 +1,50 @@
 require 'imlib2'
 include Math
 
-def calcHue(c1, c2)
-    hue = 0.0
-    if c2 == 0.0
-        if c1 == 0
-            hue = 0.0
-        elsif c1 > 0
-            hue = 90.0
-        else
-            hude = 270.0
-        end
-    elsif c2 > 0.0
-        if 1 > 0.0
-            hue = atan(c1 / c2) * 180.0 / PI;
-        else
-            hue = 360.0 - atan(c1.abs / c2) * 180.0 / PI;
-        end
+def rgb2hsv(r, g, b)
+    h = s = v = 0.0
+
+    color = [r, g, b]
+    cmax = color.max
+    cmin = color.min
+    v = cmax
+    
+    c = cmax - cmin
+    if cmax == 0.0
+        s = 0.0
     else
-        if c1 > 0.0
-            hue = 180.0 - atan(c1 / c2.abs) * 180.0 / PI;
-        else
-            hue = 180.0 + atan((c1 / c2).abs) * 180.0 / PI;
+        s = c/cmax
+    end
+
+    if s != 0.0
+        if r == cmax
+            h = (g - b)/c
+        elsif g == cmax
+            h = 2 + (g - r)/c
+        elsif b == cmax
+            h = 4 + (r - g)/c
+        end
+        h *= 60.0
+        if h < 0.0
+            h += 360.0
         end
     end
-    if hue < 0
-        hue += 360.0;
-    end
-    return hue
-end
-
-def calcBrightness(r, g, b)
-    return (0.299 * r + 0.587 * g + 0.114 * b).to_i
-end
-
-def calcSaturation(c1, c2)
-    return sqrt(c1 * c1 + c2 * c2)
+    return h, s, v
 end
 
 # Main part
 img = Imlib2::Image.load("srcimg/lena.jpg")
-minHue = 110.0
-maxHue = 140.0
-minSat = 40.0
-maxSat = 80.0
-minBright = 0.28
+minHue = 0.0
+maxHue = 30.0
 
 img.h.times do |y|
     img.w.times do |x|
         color = img.pixel(x, y)
         
-        bright = calcBrightness(color.r, color.g, color.b)
-        
-        c1 = color.r - bright
-        c2 = color.b - bright
-        hue = calcHue(c1, c2)
+        h, s, v = rgb2hsv(color.r, color.g, color.b)
 
-        saturation = calcSaturation(c1, c2)
         col = 255
-        if hue >= minHue and hue <= maxHue \
-           and saturation > minSat and saturation < maxSat \
-           and bright > minBright
+        if h >= minHue and h <= maxHue
             col = 0
         end
         color.r = color.g = color.b = col
