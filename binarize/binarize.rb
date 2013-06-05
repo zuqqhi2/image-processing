@@ -4,6 +4,9 @@ include Math
 def rgb2hsv(r, g, b)
     h = s = v = 0.0
 
+    r = r.to_f
+    g = g.to_f
+    b = b.to_f
     color = [r, g, b]
     cmax = color.max
     cmin = color.min
@@ -35,7 +38,7 @@ end
 # Main part
 img = Imlib2::Image.load("srcimg/lena.jpg")
 minHue = 0.0
-maxHue = 2.5
+maxHue = 30.0
 
 img.h.times do |y|
     img.w.times do |x|
